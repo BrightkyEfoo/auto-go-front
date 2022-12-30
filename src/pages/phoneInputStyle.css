@@ -1,0 +1,17 @@
+.react-tel-input .form-control{
+    font-size: inherit;
+    height: 40px;
+    line-height: inherit;
+    flex-grow: 1;
+    z-index: 0;
+    line-height: inherit;
+}
+
+.react-tel-input{
+    z-index: 0;
+    display: flex;
+    font-family: inherit;
+    font-size: inherit;
+    height: 40px;
+    
+}

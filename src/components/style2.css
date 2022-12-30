@@ -1,0 +1,27 @@
+#lastBoxesSwiper{
+    width:90%;
+    height: 235px;
+    padding-left: 20px;
+    background-color: transparent;
+    border-radius: 25px;
+    height: 250px;
+    display : flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+}
+.swiper-pagination-bullet{
+    background-color: #fff;
+}
+
+.swiperSlideLastBoxes{
+    background-color: transparent;
+}
+
+#lastBoxesSwiper > .swiper-wrapper{
+    padding-inline-start: 0;
+}
+#lastBoxesSwiper > .swiper-pagination {
+    bottom : -15px
+}
+

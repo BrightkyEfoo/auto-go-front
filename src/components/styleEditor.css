@@ -1,0 +1,23 @@
+.editorClassName{
+    border-width: 1px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-color: black;
+    height : 200px;
+    width: 45vw;
+    border-top-style: none;
+    background-color: white;
+    display: flex;
+}
+
+.toolbarEditorClassName{
+    color : #4A5568
+}
+.wrapperEditorWrapper{
+    width: 45vw;
+    color : #4A5568;
+    border-bottom-left-radius: 8px; 
+    border-bottom-right-radius: 8px;
+    background-color: #4A5568;
+    
+}

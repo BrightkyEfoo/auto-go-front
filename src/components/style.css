@@ -1,0 +1,44 @@
+.swiper-slide{
+    max-width: 750px;
+    padding-left: 15px;
+    background-color: white;
+    border-radius: 18.75px;
+    height: 187.5px;
+    display : flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+}
+.swiper{
+    
+    padding: 15px 0 0 0;
+    margin-top: 37.5px;
+    max-width: 750px;
+}
+
+.swiper-wrapper{
+    padding-inline-start: 0;
+}
+.swiper-pagination {
+    bottom: 0;
+    padding-bottom: 10px;
+}
+
+#firstSpan{
+    color : white;
+}
+#secondSpan{
+    width : 46.67px;
+    line-height: 46.67px;
+    padding: 3.75px 0;
+    color : #3182ce;
+    border-radius: 3.75px;
+    font-weight: 700;
+    background-color: white;
+}
+@media screen and (max-width: 520px) {
+    .swiper{
+    display: none;
+    }
+    
+  }

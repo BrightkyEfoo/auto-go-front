@@ -1,0 +1,18 @@
+@media screen and (max-width: 520px) {
+    #navSelections {
+      display : none;
+    }
+    #search{
+        width:170px;
+    }
+    #searchBar{
+        width:170px;
+    }
+    #searchBarContainer{
+        flex-grow: 0;
+    } 
+    #nav{
+        justify-content: space-around;
+        gap: 0;
+    }
+  }
