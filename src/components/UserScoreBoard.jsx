@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
 import axios from 'axios';
 import Chart from 'react-apexcharts';
-import { getVisitesDatas } from '../Data';
+import { BACKEND_URL, getVisitesDatas } from '../Data';
 
 export const Months = ['Janvier' , 'Fevrier' , 'Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decembre']
 
 const UserScoreBoard = () => {
-  const socket = io('https://autogoback237.herokuapp.com');
+  const socket = io(BACKEND_URL);
   const [usersList, setUsersList] = useState([]);
   const [sexeDonutSeries, setSexeDonutSeries] = useState([0, 0]);
   const Token = useSelector(state => state.header.token);

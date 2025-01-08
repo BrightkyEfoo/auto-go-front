@@ -5,6 +5,7 @@ import { FaPencilAlt } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { ExamenActions } from '../rtk/features/Examens/ExamenSlice';
+import { BACKEND_URL } from '../Data';
 
 const TestsExamens = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const TestsExamens = () => {
   const [r, setR] = useState(0);
   useEffect(() => {
     axios
-      .get('https://autogoback237.herokuapp.com/api/examens', {
+      .get(`${BACKEND_URL}/api/examens`, {
         headers: {
           authorization: Token,
         },
@@ -118,7 +119,7 @@ const Examen = ({ examen, setR }) => {
               if (canEdit) {
                 axios
                   .post(
-                    `https://autogoback237.herokuapp.com/api/examen/${examen.id}`,
+                    `${BACKEND_URL}/api/examen/${examen.id}`,
                     { title: inputTitle },
                     {
                       headers: {
@@ -153,7 +154,7 @@ const Examen = ({ examen, setR }) => {
             rounded="md"
             onClick={() => {
               axios
-                .delete(`https://autogoback237.herokuapp.com/api/examen/${examen.id}`, {
+                .delete(`${BACKEND_URL}/api/examen/${examen.id}`, {
                   headers: {
                     authorization: Token,
                   },

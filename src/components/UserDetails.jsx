@@ -23,7 +23,7 @@ import { GrFormAdd } from 'react-icons/gr';
 import { SiGooglemaps } from 'react-icons/si';
 import { ImAngry } from 'react-icons/im';
 import { useDispatch, useSelector } from 'react-redux';
-import { postAPISetUsersURL } from '../Data';
+import { BACKEND_URL, postAPISetUsersURL } from '../Data';
 import { UserActions } from '../rtk/features/BearerToken/UserSlice';
 import './style1.css';
 import { loadingActions } from '../rtk/features/BearerToken/LoadingSlice';
@@ -307,7 +307,7 @@ const UserDetails = ({ nom, prenom, birthDate, status, phone, email, courses, ph
     console.log({ ...formData });
 
     axios
-      .post('https://autogoback237.herokuapp.com/api/setuserprofilepicture/?userId=' + userId, formData, {
+      .post(`${BACKEND_URL}/api/setuserprofilepicture/?userId=${userId}, ${formData}`, {
         headers: {
           authorization: Token,
         },

@@ -4,13 +4,14 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { UserActions } from '../rtk/features/BearerToken/UserSlice'
 import ExamenScore from './ExamenScore'
+import { BACKEND_URL } from '../Data'
 
 const UserAchivement = () => { // c'est le scoreboard d'un simple utilisateur
   const user = useSelector(state => state.user)
   const Token = useSelector(state => state.header.token)
   const dispatch = useDispatch()
   useEffect(() => {
-    axios.post('https://autogoback237.herokuapp.com/api/getScores' , {
+    axios.post(`${BACKEND_URL}/api/getScores` , {
       userId : user.id
     } , {
       headers:{

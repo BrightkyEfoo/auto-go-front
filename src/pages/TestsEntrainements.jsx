@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { ExamenActions } from '../rtk/features/Examens/ExamenSlice';
+import { BACKEND_URL } from '../Data';
 
 const TestsEntrainements = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const TestsEntrainements = () => {
   const examens = useSelector(state => state.Examen.examens);
   useEffect(() => {
     axios
-      .get('https://autogoback237.herokuapp.com/api/entrainementExamen', {
+      .get(`${BACKEND_URL}/api/entrainementExamen`, {
         headers: {
           authorization: Token,
         },

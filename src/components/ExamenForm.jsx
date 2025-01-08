@@ -20,6 +20,7 @@ import { FaArrowDown, FaArrowUp, FaImage, FaMinus, FaPlus, FaVideo } from 'react
 import { GiCrossMark } from 'react-icons/gi';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { BACKEND_URL } from '../Data';
 const reducer = (state, { type, data }) => {
   let questions = state.questions;
   switch (type) {
@@ -212,7 +213,7 @@ const ExamenForm = ({ ExamenId }) => {
   useEffect(() => {
     if (ExamenId) {
       axios
-        .get(`https://autogoback237.herokuapp.com/api/ExamenAndQuestions?ExamenId=${ExamenId}`, {
+        .get(`${BACKEND_URL}/api/ExamenAndQuestions?ExamenId=${ExamenId}`, {
           headers: {
             authorization: Token,
           },
@@ -250,14 +251,14 @@ const ExamenForm = ({ ExamenId }) => {
     console.log(state);
     if (ExamenId) {
       axios
-        .delete(`https://autogoback237.herokuapp.com/api/examen/${ExamenId}`, {
+        .delete(`${BACKEND_URL}/api/examen/${ExamenId}`, {
           headers: {
             authorization: Token,
           },
         })
         .then(res => {
           axios
-            .post('https://autogoback237.herokuapp.com/api/examencreate', state, {
+            .post(`${BACKEND_URL}/api/examencreate`, state, {
               headers: {
                 authorization: Token,
               },
@@ -270,7 +271,7 @@ const ExamenForm = ({ ExamenId }) => {
         });
     } else {
       axios
-        .post('https://autogoback237.herokuapp.com/api/examencreate', state, {
+        .post(`${BACKEND_URL}/api/examencreate`, state, {
           headers: {
             authorization: Token,
           },
@@ -418,7 +419,7 @@ export const Question = ({ question }) => {
     formData.append('audio', e.target.files[0]);
     console.log({ ...formData });
     axios
-      .post('https://autogoback237.herokuapp.com/api/examenMedia/audio', formData, {
+      .post(`${BACKEND_URL}/api/examenMedia/audio`, formData, {
         headers: {
           authorization: Token,
         },
@@ -440,7 +441,7 @@ export const Question = ({ question }) => {
     formData.append(`head`, e.target.files[0]);
     console.log({ ...formData });
     axios
-      .post(`https://autogoback237.herokuapp.com/api/examenMedia/${headType.toLocaleLowerCase()}`, formData, {
+      .post(`${BACKEND_URL}/api/examenMedia/${headType.toLocaleLowerCase()}`, formData, {
         headers: {
           authorization: Token,
         },

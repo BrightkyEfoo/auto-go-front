@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import TimeBarExamen from '../components/TimeBarExamen';
 import { loadingActions } from '../rtk/features/BearerToken/LoadingSlice';
 import { ExamenActions } from '../rtk/features/Examens/ExamenSlice';
+import { BACKEND_URL } from '../Data';
 
 const timerValue = 30000;
 export const appContext = createContext();
@@ -26,7 +27,7 @@ const Examen = ({ id }) => {
   const note = useSelector(state => state.Examen.note);
   useEffect(() => {
     axios
-      .get('https://autogoback237.herokuapp.com/api/questionsExamenId/?ExamenId=' + id, {
+      .get(`${BACKEND_URL}/api/questionsExamenId/?ExamenId=${id}`, {
         headers: {
           authorization: Token,
         },
@@ -286,7 +287,7 @@ export const ReponseBlock = ({
       // dispatch(ExamenActions.setQuestionActuelle(idxQuestion + 1));
       axios
         .post(
-          'https://autogoback237.herokuapp.com/api/verifyExamenById',
+          `${BACKEND_URL}/api/verifyExamenById`,
           {
             userId,
             examenId: examenId,
@@ -340,7 +341,7 @@ export const ReponseBlock = ({
         // dispatch(ExamenActions.setQuestionActuelle(idxQuestion + 1));
         axios
           .post(
-            'https://autogoback237.herokuapp.com/api/verifyExamenById',
+            `${BACKEND_URL}/api/verifyExamenById`,
             {
               examenId: examenId,
               reponses: reponsesChoisies,

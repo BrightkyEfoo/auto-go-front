@@ -10,6 +10,7 @@ import { SyncLoader } from 'react-spinners';
 import { ChatBotActions } from '../rtk/features/BearerToken/ChatBotSlice';
 import './chatBotStyles.css';
 import GrandProfIcon from './granProf.svg';
+import { BACKEND_URL } from '../Data';
 const appContext = createContext()
 const GranProf = ({ idVisite }) => {
   const [isDisplayed, setIsDisplayed] = useState(false);
@@ -30,7 +31,7 @@ const GranProf = ({ idVisite }) => {
       <ChatBox display={isDisplayed ? 'flex' : 'none'} close={setIsDisplayed} />
       <Image
         display={isDisplayed ? 'none' : 'block'}
-        src="https://autogoback237.herokuapp.com/public/images/grandProf.png"
+        src={`${BACKEND_URL}/public/images/grandProf.png`}
         cursor="pointer"
         onClick={() => setIsDisplayed(true)}
         alt="grandProf"
@@ -100,7 +101,7 @@ export const MainChatBox = ({closeRef}) => {
     if (userId) {
       dispatch(ChatBotActions.clear())
       axios
-        .post('https://autogoback237.herokuapp.com/api/chatBot/message/', {
+        .post(`${BACKEND_URL}/api/chatBot/message/`, {
           message: 'code',  // code pour repertoire du code 
         })
         .then(res => {
@@ -110,7 +111,7 @@ export const MainChatBox = ({closeRef}) => {
         });
     } else {
       axios
-        .post('https://autogoback237.herokuapp.com/api/chatBot/message/', {
+        .post(`${BACKEND_URL}/api/chatBot/message/`, {
           message: 'Je suis nouveau',
         })
         .then(res => {
@@ -217,7 +218,7 @@ const BotMessage = ({ contenu, codeAction , closeRef }) => {
         {contenu}
       </Text>
       <Box as='video' controls >
-        <source src='https://autogoback237.herokuapp.com/public/videos/support1.mp4' />
+        <source src={`${BACKEND_URL}/public/videos/support1.mp4`} />
       </Box>
     </VStack>,
 
@@ -228,7 +229,7 @@ const BotMessage = ({ contenu, codeAction , closeRef }) => {
   useEffect(() => {
     if ([1, 2 , 4 , 8].includes(codeAction)) {
       axios
-        .post('https://autogoback237.herokuapp.com/api/chatBot/message/', {
+        .post(`${BACKEND_URL}/api/chatBot/message/`, {
           message: 'mon ressenti',
         })
         .then(res => {
@@ -241,7 +242,7 @@ const BotMessage = ({ contenu, codeAction , closeRef }) => {
       setTimeout(() => {
         closeRef.current.click()
         axios
-        .post('https://autogoback237.herokuapp.com/api/chatBot/message/', {
+        .post(`${BACKEND_URL}/api/chatBot/message/`, {
           message: 'code', //nouveau message a pres la fermetture auto
         })
         .then(res => {
@@ -278,7 +279,7 @@ const UserMessage = ({ contenu, prop, setProps }) => {
       setDisabled(true);
       setProps([prop]);
       axios
-        .post('https://autogoback237.herokuapp.com/api/chatBot/message/', {
+        .post(`${BACKEND_URL}/api/chatBot/message/`, {
           message: e.target.innerText,
         })
         .then(res => {
@@ -339,7 +340,7 @@ const FirstForm = ({ conseiller }) => {
       onSubmit={values => {
         setIsLoading(true)
         axios
-          .post('https://autogoback237.herokuapp.com/api/chatBot/message/', {
+          .post(`${BACKEND_URL}/api/chatBot/message/`, {
             message: 'mon ressenti',
           })
           .then(res => {
@@ -403,7 +404,7 @@ const NoteForm = () => {
       onSubmit={values => {
         setCanSubmit(false)
         axios
-          .post('https://autogoback237.herokuapp.com/api/chatBot/message/', {
+          .post(`${BACKEND_URL}/api/chatBot/message/`, {
             message: userId ? 'code' :'je suis nouveau',
           })
           .then(res => {

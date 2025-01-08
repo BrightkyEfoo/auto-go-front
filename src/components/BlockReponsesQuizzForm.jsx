@@ -5,6 +5,7 @@ import { GrAdd, GrSubtract } from 'react-icons/gr';
 import { useDispatch, useSelector } from 'react-redux';
 import { quizzFormActions } from '../rtk/features/BearerToken/QuizzFormSlice';
 import ResponseForQuizzForm, { BouttonIcone } from './ResponseForQuizzForm';
+import { BACKEND_URL } from '../Data';
 
 const BlockReponsesQuizzForm = ({ idxQuestion, line }) => {
   const dispatch = useDispatch();
@@ -237,7 +238,7 @@ export const ImageQuestion = ({ idxQuestion }) => {
     console.log({ ...formData });
 
     axios
-      .post('https://autogoback237.herokuapp.com/api/picture', formData, {
+      .post(`${BACKEND_URL}/api/picture`, formData, {
         headers: {
           authorization: Token,
         },
@@ -254,7 +255,7 @@ export const ImageQuestion = ({ idxQuestion }) => {
   const handleClick = () => {
     if (state) {
       axios
-        .delete('https://autogoback237.herokuapp.com/api/picture', {
+        .delete(`${BACKEND_URL}/api/picture`, {
           data: {
             url: imgSrc,
           },

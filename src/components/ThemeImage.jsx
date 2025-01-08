@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadingActions } from '../rtk/features/BearerToken/LoadingSlice';
 import { ThemeActions } from '../rtk/features/BearerToken/ThemesSlice';
 import fetchAndReloadThemeAndThemeLoaded from '../rtk/myExtraFeatures/fetchAndReloadThemeAndThemeLoaded';
+import { BACKEND_URL } from '../Data';
 
 const ThemeImage = ({ h, w, m, src, alt, themeId }) => {
   const status = useSelector(state => state.user.status);
@@ -26,7 +27,7 @@ const ThemeImage = ({ h, w, m, src, alt, themeId }) => {
     console.log({ ...formData });
 
     axios
-      .post('https://autogoback237.herokuapp.com/api/setthemepicture/?id=' + themeId, formData, {
+      .post(`${BACKEND_URL}/api/setthemepicture/?id=${themeId},${formData}`, {
         headers: {
           authorization: Token,
         },

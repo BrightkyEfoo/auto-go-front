@@ -1,6 +1,7 @@
 import { Box, Button, Heading, HStack, Input } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useState } from 'react';
+import { BACKEND_URL } from '../Data';
 
 const ValidationMock = () => {
   const [numValue, setNumValue] = useState('');
@@ -14,7 +15,7 @@ const ValidationMock = () => {
           colorScheme="blue"
           onClick={() => {
             axios
-              .post('https://autogoback237.herokuapp.com/api/payment/succes', {
+              .post(`${BACKEND_URL}/api/payment/succes`, {
                 userId: numValue,
                 code: codeValue,
               })
@@ -33,7 +34,7 @@ const ValidationMock = () => {
           colorScheme="red"
           onClick={() => {
             axios
-              .post('https://autogoback237.herokuapp.com/api/payment/error', {
+              .post(`${BACKEND_URL}/api/payment/error`, {
                 userId: numValue,
                 code: codeValue,
               })
