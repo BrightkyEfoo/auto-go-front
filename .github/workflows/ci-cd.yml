@@ -25,7 +25,7 @@ jobs:
 
     - name: Copy application files to VPS
       run: |
-        scp -o StrictHostKeyChecking=no -r ./app/* ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/app/
+        scp -o StrictHostKeyChecking=no -r ${{ env.FOLDER }}/* ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.FOLDER }}
 
     - name: Ensure compose.yaml exists
       run: |
