@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { io } from 'socket.io-client';
 import { useSelector } from 'react-redux';
-import { postPaiementUrl } from '../Data';
+import { BACKEND_URL, postPaiementUrl } from '../Data';
 import { HashLoader } from 'react-spinners';
 import fetchAndReloadThemeAndThemeLoaded from '../rtk/myExtraFeatures/fetchAndReloadThemeAndThemeLoaded';
 
@@ -12,7 +12,7 @@ const FormulesPaiement = ({ code, titre, bgColor, color, prix, duree, composant 
   const [loading, setLoading] = useState(false);
   const Token = useSelector(state => state.header.token);
   const userId = useSelector(state => state.user.id);
-  const socket = io('https://autogoback237.herokuapp.com');
+  const socket = io(BACKEND_URL);
 
   const handleClick = () => {
     setDisplay(true);
@@ -98,13 +98,13 @@ const FormulesPaiement = ({ code, titre, bgColor, color, prix, duree, composant 
             <HStack>
               <Button onClick={() => handleOm()} bgColor="white" borderWidth={2} borderColor="orange" h={50}>
                 <HStack>
-                  <Image src="https://autogoback237.herokuapp.com/public/images/omLogo.png" w={45} h={45} objectFit="cover" alt="logo-Orange-Money" />
+                  <Image src={`${BACKEND_URL}/public/images/omLogo.png`} w={45} h={45} objectFit="cover" alt="logo-Orange-Money" />
                   <Text>Orange Money</Text>
                 </HStack>
               </Button>
               <Button onClick={() => handleMomo()} bgColor="yellow" borderWidth={2} borderColor="yellow" h={50}>
                 <HStack>
-                  <Image src="https://autogoback237.herokuapp.com/public/images/mtnLogo.png" h={45} objectFit="cover" alt="logo-Orange-Money" />
+                  <Image src={`${BACKEND_URL}/public/images/mtnLogo.png`} h={45} objectFit="cover" alt="logo-Orange-Money" />
                   <Text>Mobile Money</Text>
                 </HStack>
               </Button>

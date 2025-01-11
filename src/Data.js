@@ -11,35 +11,37 @@ import {
 } from 'react-icons/fa';
 // end of icons for home slider
 
-export const postAPIConnectionURL = 'https://autogoback237.herokuapp.com/api/connexion';
-export const postAPICreateThemeURL = 'https://autogoback237.herokuapp.com/api/createtheme';
-export const postAPIInscriptionURL = 'https://autogoback237.herokuapp.com/api/inscription';
-export const postAPIGetUsersURL = 'https://autogoback237.herokuapp.com/api/users';
-export const postAPISetUsersURL = 'https://autogoback237.herokuapp.com/api/setuser';
-export const getAPIGetCoursesURL = 'https://autogoback237.herokuapp.com/api/courses';
-export const getAuthGoogleURL = 'https://autogoback237.herokuapp.com/auth/google';
-export const getThemeChap = 'https://autogoback237.herokuapp.com/api/getthemechap/?id='
-export const getChapPart = 'https://autogoback237.herokuapp.com/api/getchapactivities/?id='
-export const postCreateAndAddPartToChap = 'https://autogoback237.herokuapp.com/api/createandaddparttochap' 
-export const postCreateAndAddChapToTheme = 'https://autogoback237.herokuapp.com/api/createandaddchaptotheme'
-export const getUserInfosTheme = 'https://autogoback237.herokuapp.com/api/users?userId='
-export const putSetThemeName = 'https://autogoback237.herokuapp.com/api/theme/setName'
-export const putSetChapitreName = 'https://autogoback237.herokuapp.com/api/chapitre/setName'
-export const deleteChapitre = 'https://autogoback237.herokuapp.com/api/chapitre/delete'
-export const deleteTheme = 'https://autogoback237.herokuapp.com/api/theme/delete'
-export const deleteActivity = 'https://autogoback237.herokuapp.com/api/activity/delete'
-export const putSetActivityName = 'https://autogoback237.herokuapp.com/api/activity/setName'
-export const getAllPageACtivites = 'https://autogoback237.herokuapp.com/api/activite/full/?id='
-export const putActivityCompletedForUserId = 'https://autogoback237.herokuapp.com/api/activity/completed'
-export const getChapById = 'https://autogoback237.herokuapp.com/api/chapitre?id='
-export const getSearch = 'https://autogoback237.herokuapp.com/api/search?nom='
-export const putChapterCompletedForUserId = 'https://autogoback237.herokuapp.com/api/chapter/completed'
-export const postreponsesQuizzURL = 'https://autogoback237.herokuapp.com/api/verifyQuizz';
-export const postGetOfflineURL = 'https://autogoback237.herokuapp.com/api/offlined';
-export const postSetLastSeenUrl = 'https://autogoback237.herokuapp.com/api/lastseen/setbyid/';
-export const postPaiementUrl = 'https://autogoback237.herokuapp.com/api/payment/';
-export const getVisitesDatas = 'https://autogoback237.herokuapp.com/api/visitesData/?userId='
-export const postIMConnecting = 'https://autogoback237.herokuapp.com/api/visited'
+export const BACKEND_URL = 'http://localhost:9000';
+
+export const postAPIConnectionURL = `${BACKEND_URL}/api/connexion`;
+export const postAPICreateThemeURL = `${BACKEND_URL}/api/createtheme`;
+export const postAPIInscriptionURL = `${BACKEND_URL}/api/inscription`;
+export const postAPIGetUsersURL = `${BACKEND_URL}/api/users`;
+export const postAPISetUsersURL = `${BACKEND_URL}/api/setuser`;
+export const getAPIGetCoursesURL = `${BACKEND_URL}/api/courses`;
+export const getAuthGoogleURL = `${BACKEND_URL}/auth/google`;
+export const getThemeChap = `${BACKEND_URL}/api/getthemechap/?id=`
+export const getChapPart = `${BACKEND_URL}/api/getchapactivities/?id=`
+export const postCreateAndAddPartToChap = `${BACKEND_URL}/api/createandaddparttochap`
+export const postCreateAndAddChapToTheme = `${BACKEND_URL}/api/createandaddchaptotheme`
+export const getUserInfosTheme = `${BACKEND_URL}/api/users?userId=`
+export const putSetThemeName = `${BACKEND_URL}/api/theme/setName`
+export const putSetChapitreName = `${BACKEND_URL}/api/chapitre/setName`
+export const deleteChapitre = `${BACKEND_URL}/api/chapitre/delete`
+export const deleteTheme = `${BACKEND_URL}/api/theme/delete`
+export const deleteActivity = `${BACKEND_URL}/api/activity/delete`
+export const putSetActivityName = `${BACKEND_URL}/api/activity/setName`
+export const getAllPageACtivites = `${BACKEND_URL}/api/activite/full/?id=`
+export const putActivityCompletedForUserId = `${BACKEND_URL}/api/activity/completed`
+export const getChapById = `${BACKEND_URL}/api/chapitre?id=`
+export const getSearch = `${BACKEND_URL}/api/search?nom=`
+export const putChapterCompletedForUserId = `${BACKEND_URL}/api/chapter/completed`
+export const postreponsesQuizzURL = `${BACKEND_URL}/api/verifyQuizz`;
+export const postGetOfflineURL = `${BACKEND_URL}/api/offlined`;
+export const postSetLastSeenUrl = `${BACKEND_URL}/api/lastseen/setbyid/`;
+export const postPaiementUrl = `${BACKEND_URL}/api/payment/`;
+export const getVisitesDatas = `${BACKEND_URL}/api/visitesData/?userId=`
+export const postIMConnecting = `${BACKEND_URL}/api/visited`
 export const SECRET_AES_KEY =
   'SUPER_SUPER_SECRET_KEY_@@@@@4785525_BRIGHTMAN_CRAQUEZ CA JE VOIS BANDE DE CHIENS LOOOOOOOOOLLLLLL!!!!!!!!!!';
 export const containerStyle = {

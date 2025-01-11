@@ -15,6 +15,7 @@ import { quizzFormActions } from '../rtk/features/BearerToken/QuizzFormSlice';
 // import { loadingActions } from '../rtk/features/BearerToken/LoadingSlice';
 import axios from 'axios';
 import { MdAddAPhoto } from 'react-icons/md';
+import { BACKEND_URL } from '../Data';
 
 const ResponseForQuizzForm = ({ idxReponse, idxQuestion, idxDerniereReponse }) => {
   // i represente l'index de la  reponse actuelle
@@ -98,7 +99,7 @@ export const Img = ({ idxReponse, idxQuestion, idxDerniereReponse }) => {
     console.log({ ...formData });
 
     axios
-      .post('https://autogoback237.herokuapp.com/api/picture', formData, {
+      .post(`${BACKEND_URL}/api/picture`, formData, {
         headers: {
           authorization: Token,
         },
@@ -114,7 +115,7 @@ export const Img = ({ idxReponse, idxQuestion, idxDerniereReponse }) => {
       console.log('img : ', imgSrc);
       // on est entrain de cliquer sur la croix
       axios
-        .delete('https://autogoback237.herokuapp.com/api/picture', {
+        .delete(`${BACKEND_URL}/api/picture`, {
           data: {
             url: imgSrc,
           },

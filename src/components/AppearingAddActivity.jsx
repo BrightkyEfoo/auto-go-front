@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getChapPart, postCreateAndAddPartToChap } from '../Data';
+import { BACKEND_URL, getChapPart, postCreateAndAddPartToChap } from '../Data';
 import { BoxToDisplayActions } from '../rtk/features/BearerToken/BoxToDisplaySlice';
 import { quizzFormActions } from '../rtk/features/BearerToken/QuizzFormSlice';
 import fetchAndReloadThemeAndThemeLoaded from '../rtk/myExtraFeatures/fetchAndReloadThemeAndThemeLoaded';
@@ -104,7 +104,7 @@ const AppearingAddActivity = ({ chapitreId, themeId }) => {
     }
   }
 
-    const url = 'https://autogoback237.herokuapp.com/api/picture/lecon';
+    const url = `${BACKEND_URL}/api/picture/lecon`;
 
     axios.post(url, fd, config)
         .then((res) => {

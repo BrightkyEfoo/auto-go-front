@@ -6,6 +6,7 @@ import { FaPencilAlt } from 'react-icons/fa';
 import { GiCrossMark } from 'react-icons/gi';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { BACKEND_URL } from '../Data';
 export const appContext = createContext();
 const ModifyExams = () => {
   const Token = useSelector(state => state.header.token);
@@ -16,7 +17,7 @@ const ModifyExams = () => {
   const navigate = useHistory()
   useEffect(() => {
     axios
-      .get('https://autogoback237.herokuapp.com/api/examens', {
+      .get(`${BACKEND_URL}/api/examens`, {
         headers: {
           authorization: Token,
         },
@@ -31,7 +32,7 @@ const ModifyExams = () => {
         });
       });
     axios
-      .get('https://autogoback237.herokuapp.com/api/entrainementExamen', {
+      .get(`${BACKEND_URL}/api/entrainementExamen`, {
         headers: {
           authorization: Token,
         },
@@ -100,7 +101,7 @@ export const ListItem = ({ item }) => {
   };
   const handleDelete = () => {
     axios
-      .delete(`https://autogoback237.herokuapp.com/api/examen/${item.id}`, {
+      .delete(`${BACKEND_URL}/api/examen/${item.id}`, {
         headers: {
           authorization: Token,
         },

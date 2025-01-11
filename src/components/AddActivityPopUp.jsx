@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { getChapPart, getThemeChap, postCreateAndAddChapToTheme, postCreateAndAddPartToChap } from '../Data';
+import { BACKEND_URL, getChapPart, getThemeChap, postCreateAndAddChapToTheme, postCreateAndAddPartToChap } from '../Data';
 import { DisplayActivityActions } from '../rtk/features/BearerToken/DisplayActivitySlice';
 import { ThemeLoadedActions } from '../rtk/features/BearerToken/ThemeLoadedSlice';
 import fetchAndReloadThemeAndThemeLoaded from '../rtk/myExtraFeatures/fetchAndReloadThemeAndThemeLoaded';
@@ -77,7 +77,7 @@ const AddActivityPopUp = ({ themeId }) => {
     }
   }
 
-    const url = 'https://autogoback237.herokuapp.com/api/picture/lecon';
+    const url = `${BACKEND_URL}/api/picture/lecon`;
 
     axios.post(url, fd, config)
         .then((res) => {

@@ -7,6 +7,7 @@ import { loadingActions } from '../rtk/features/BearerToken/LoadingSlice';
 import { ExamenActions } from '../rtk/features/Examens/ExamenSlice';
 import { AiFillStar } from 'react-icons/ai';
 import { ArrayCompare } from '../utils';
+import { BACKEND_URL } from '../Data';
 const Examen = ({ id }) => {
   const dispatch = useDispatch();
   const userId = useSelector(state => state.user.id)
@@ -30,7 +31,7 @@ const Examen = ({ id }) => {
   // console.log(choices)
   useEffect(() => {
     axios
-      .get('https://autogoback237.herokuapp.com/api/questionsExamenId/?ExamenId=' + id, {
+      .get(`${BACKEND_URL}/api/questionsExamenId/?ExamenId=${id}`, {
         headers: {
           authorization: Token,
         },
@@ -84,7 +85,7 @@ const Examen = ({ id }) => {
         //ici c'est la derniere question
         setIsEndResultVisible(true);
         audioPlayer.current.pause();
-        axios.post('https://autogoback237.herokuapp.com/api/scoreTestExam',{
+        axios.post(`${BACKEND_URL}/api/scoreTestExam`,{
           nbQuestions : examen.questions?.length,
           note,
           examenId : id,
