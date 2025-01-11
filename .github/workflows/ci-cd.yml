@@ -23,11 +23,12 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Copy application files to VPS
+      - name: Create folder to VPS
         run: |
           mkdir -p ${{ env.FOLDER }}
-          ls -al
-          ls -al ./app
+
+      - name: Copy application files to VPS
+        run: |
           scp -o StrictHostKeyChecking=no -r ./app/* ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.FOLDER }}/
 
       - name: Ensure compose.yaml exists
