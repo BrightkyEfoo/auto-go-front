@@ -51,5 +51,5 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
           cd ${{ env.FOLDER }}
-          docker compose down && docker compose build --no-cache && docker compose up
+          docker compose down && docker compose build --no-cache && docker compose up -d
           EOF
