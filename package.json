@@ -27,7 +27,6 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.4.0",
     "react-spinners": "^0.13.4",
-    "serve": "^14.0.1",
     "socket.io-client": "^4.5.2",
     "suneditor": "^2.43.14",
     "suneditor-react": "^3.4.1",

@@ -1,0 +1,12 @@
+services:
+  autogo-front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: autogo-front-container
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: npm start
