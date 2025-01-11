@@ -41,35 +41,16 @@ jobs:
           fi
           EOF
 
-      - name: copy .env file
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-          cd ~/app
-          rm ${{ env.FOLDER }}/.env
-          # echo "# Directus" > ${{ env.FOLDER }}/.env
-          # echo "DIRECTUS_KEY=${{ secrets.DIRECTUS_KEY }}" >> ${{ env.FOLDER }}/.env
-          # echo "DIRECTUS_SECRET=${{ secrets.DIRECTUS_SECRET }}" >> ${{ env.FOLDER }}/.env
-          # echo "ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }}" >> ${{ env.FOLDER }}/.env
-          # echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> ${{ env.FOLDER }}/.env
-          # echo "NEXT_PUBLIC_DIRECTUS_URL=${{ secrets.NEXT_PUBLIC_DIRECTUS_URL }}" >> ${{ env.FOLDER }}/.env
-          # echo "DIRECTUS_URL=${{ secrets.DIRECTUS_URL }}" >> ${{ env.FOLDER }}/.env
-          # echo "DIRECTUS_HOST=${{ secrets.DIRECTUS_HOST }}" >> ${{ env.FOLDER }}/.env
-          # echo "DIRECTUS_PORT=${{ secrets.DIRECTUS_PORT }}" >> ${{ env.FOLDER }}/.env
-          # echo "DIRECTUS_API_TOKEN=${{ secrets.DIRECTUS_API_TOKEN }}" >> ${{ env.FOLDER }}/.env
-          # EOF
+      # - name: copy .env file
+      #   run: |
+      #     ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+      #     cd ~/app
+      #     r
 
       - name: Deploy with Docker Compose
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-          cd ~/app
+          cd ${{ env.FOLDER }}
           docker compose down
           docker compose up -d --build
-          EOF
-
-      - name: Run after-deploy.sh
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-          cd ~/app
-          chmod +x after-deploy.sh
-          ./after-deploy.sh
           EOF
