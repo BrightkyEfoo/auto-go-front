@@ -27,6 +27,7 @@ jobs:
         run: |
           mkdir -p ${{ env.FOLDER }}
           ls -al
+          ls -al ./app
           scp -o StrictHostKeyChecking=no -r ./app/* ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.FOLDER }}
 
       - name: Ensure compose.yaml exists
