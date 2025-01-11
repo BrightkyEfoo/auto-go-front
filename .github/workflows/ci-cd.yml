@@ -3,7 +3,7 @@ name: Deploy React JS with Docker
 on:
   workflow_dispatch:
 env:
-  NODE_VERSION: '20.x'
+  NODE_VERSION: "20.x"
   FOLDER: ~/autogo/front
   IMAGE: autogo-front
   IMAGE_VERSION: latest
@@ -13,59 +13,60 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        path: ${{ env.FOLDER }}
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          path: ./app
 
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.9.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Copy application files to VPS
-      run: |
-        scp -o StrictHostKeyChecking=no -r ${{ env.FOLDER }}/* ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.FOLDER }}
+      - name: Copy application files to VPS
+        run: |
+          mkdir -p ${{ env.FOLDER }}
+          scp -o StrictHostKeyChecking=no -r ./app/* ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.FOLDER }}
 
-    - name: Ensure compose.yaml exists
-      run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-        cd ~/app
-        if [ ! -f compose.yaml ]; then
-          echo "Error: compose.yaml not found!"
-          exit 1
-        fi
-        EOF
+      - name: Ensure compose.yaml exists
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+          cd ~/app
+          if [ ! -f compose.yaml ]; then
+            echo "Error: compose.yaml not found!"
+            exit 1
+          fi
+          EOF
 
-    - name: copy .env file
-      run: | 
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-        cd ~/app
-        rm ${{ env.FOLDER }}/.env
-        # echo "# Directus" > ${{ env.FOLDER }}/.env
-        # echo "DIRECTUS_KEY=${{ secrets.DIRECTUS_KEY }}" >> ${{ env.FOLDER }}/.env
-        # echo "DIRECTUS_SECRET=${{ secrets.DIRECTUS_SECRET }}" >> ${{ env.FOLDER }}/.env
-        # echo "ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }}" >> ${{ env.FOLDER }}/.env
-        # echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> ${{ env.FOLDER }}/.env
-        # echo "NEXT_PUBLIC_DIRECTUS_URL=${{ secrets.NEXT_PUBLIC_DIRECTUS_URL }}" >> ${{ env.FOLDER }}/.env
-        # echo "DIRECTUS_URL=${{ secrets.DIRECTUS_URL }}" >> ${{ env.FOLDER }}/.env
-        # echo "DIRECTUS_HOST=${{ secrets.DIRECTUS_HOST }}" >> ${{ env.FOLDER }}/.env
-        # echo "DIRECTUS_PORT=${{ secrets.DIRECTUS_PORT }}" >> ${{ env.FOLDER }}/.env
-        # echo "DIRECTUS_API_TOKEN=${{ secrets.DIRECTUS_API_TOKEN }}" >> ${{ env.FOLDER }}/.env
-        # EOF
+      - name: copy .env file
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+          cd ~/app
+          rm ${{ env.FOLDER }}/.env
+          # echo "# Directus" > ${{ env.FOLDER }}/.env
+          # echo "DIRECTUS_KEY=${{ secrets.DIRECTUS_KEY }}" >> ${{ env.FOLDER }}/.env
+          # echo "DIRECTUS_SECRET=${{ secrets.DIRECTUS_SECRET }}" >> ${{ env.FOLDER }}/.env
+          # echo "ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }}" >> ${{ env.FOLDER }}/.env
+          # echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> ${{ env.FOLDER }}/.env
+          # echo "NEXT_PUBLIC_DIRECTUS_URL=${{ secrets.NEXT_PUBLIC_DIRECTUS_URL }}" >> ${{ env.FOLDER }}/.env
+          # echo "DIRECTUS_URL=${{ secrets.DIRECTUS_URL }}" >> ${{ env.FOLDER }}/.env
+          # echo "DIRECTUS_HOST=${{ secrets.DIRECTUS_HOST }}" >> ${{ env.FOLDER }}/.env
+          # echo "DIRECTUS_PORT=${{ secrets.DIRECTUS_PORT }}" >> ${{ env.FOLDER }}/.env
+          # echo "DIRECTUS_API_TOKEN=${{ secrets.DIRECTUS_API_TOKEN }}" >> ${{ env.FOLDER }}/.env
+          # EOF
 
-    - name: Deploy with Docker Compose
-      run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-        cd ~/app
-        docker compose down
-        docker compose up -d --build
-        EOF
+      - name: Deploy with Docker Compose
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+          cd ~/app
+          docker compose down
+          docker compose up -d --build
+          EOF
 
-    - name: Run after-deploy.sh
-      run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-        cd ~/app
-        chmod +x after-deploy.sh
-        ./after-deploy.sh
-        EOF
+      - name: Run after-deploy.sh
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+          cd ~/app
+          chmod +x after-deploy.sh
+          ./after-deploy.sh
+          EOF
