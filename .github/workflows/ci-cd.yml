@@ -30,6 +30,14 @@ jobs:
       - name: Copy application files to VPS
         run: |
           scp -o StrictHostKeyChecking=no -r -p ./app/* ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${{ env.FOLDER }}/
+      
+      - name: Update BACKEND_URL in Data.js
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+          cd ${{ env.FOLDER }}/src
+          sed -i "s|export const BACKEND_URL = '.*';|export const BACKEND_URL = 'http://46.202.190.225:9000';|" Data.js
+          EOF
+
 
       - name: Ensure compose.yaml exists
         run: |
