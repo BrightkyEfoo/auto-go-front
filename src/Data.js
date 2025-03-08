@@ -11,7 +11,7 @@ import {
 } from 'react-icons/fa';
 // end of icons for home slider
 
-export const BACKEND_URL = 'http://localhost:9000';
+export const BACKEND_URL = "http://46.202.190.225:9000";
 
 export const postAPIConnectionURL = `${BACKEND_URL}/api/connexion`;
 export const postAPICreateThemeURL = `${BACKEND_URL}/api/createtheme`;
